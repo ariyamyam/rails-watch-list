@@ -1,10 +1,14 @@
-<h1>My Lists<% @lists %></h1>
+<h1>My Best Movie Watch List</h1>
+<h2>My Lists</h2>
 
+<%# show existing lists %>
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to list.name, list_path(list) %></li>
   <% end %>
 </ul>
-<div class="btn btn-secondary">
-<%= link_to "Create a new list", new_list_path %>
+
+<%# link to create a new list with link_to ANCHOR TEXT, ANCHOR PATH%>
+<div>
+<%= link_to "Create a new movie list", new_list_path %>
 </div>

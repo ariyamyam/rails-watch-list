@@ -1,5 +1,18 @@
 <%# link_to ANCHOR_TEXT, ANCHOR_URL %>
-<h2><%= @list.name %></h2>
+<h1><%= @list.name %></h1>
+
+<div>
+  <% @list.movies.each do |movie| %>
+    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+  <li><%= movie.title  %></li>
+  <li><%= movie.overview  %></li>
+
+  <li class="movie-img rounded-top"><%= image_tag movie.poster_url, style: 'height:150px;width:100px;'%></li>
+
+  <li><%= movie.rating %></li>
+  <li>###<%= bookmark.comment %></li>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Go back to list overview", lists_path %>
@@ -10,11 +23,3 @@
                     data: { confirm: "Are you sure?" } %>
 </div>
 
-<div>
-  <% @list.movies.each do |movie| %>
-    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-  <li><%= movie.title  %></li>
-  <li><%= movie.overview  %></li>
-  <li><%= movie.poster_url %></li>
-  <li><%= movie.rating %></li>
-  <% end %>
