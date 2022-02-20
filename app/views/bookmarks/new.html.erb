@@ -3,26 +3,6 @@
 <p>Here where it says "Comment" is where you add the comment for the bookmark</p>
 <%= simple_form_for [ @list, @bookmark ] do |f| %>
   <%= f.input :comment, placeholder: 'Add your comment for this movie' %>
-  <%= f.association :movie, prompt: 'Select a movie', input_html: { data: {controller: 'select2'}} %>
+  <%= f.association :movie, prompt: 'Select a movie' %>
   <%= f.submit "Submit movie", class: "btn btn-primary" %>
 <% end %>
-
-
-
-
-<div>
-  <ul>
-    <% @list.movies.each do |movie| %>
-      <li><%= movie.title %></li>
-      <li><%= movie.overview %></li>
-      <li><%= movie.poster_url %></li>
-      <li><%= movie.rating%></li>
-    <% end %>
-  </ul>
-</div>
-<% @list.bookmarks.each do |bookmark| %>
-  <li><%= bookmark.comment %></li>
-<% end %>
-</ul>
-
-<%= link_to 'add a new movie', new_list_bookmark_path(@list) %>
